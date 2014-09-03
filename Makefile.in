@@ -82,8 +82,9 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
 	$(srcdir)/Config.h.in ChangeLog build-aux/ar-lib \
 	build-aux/compile build-aux/config.guess build-aux/config.sub \
-	build-aux/install-sh build-aux/missing build-aux/ltmain.sh \
-	$(top_srcdir)/build-aux/ar-lib $(top_srcdir)/build-aux/compile \
+	build-aux/depcomp build-aux/install-sh build-aux/missing \
+	build-aux/ltmain.sh $(top_srcdir)/build-aux/ar-lib \
+	$(top_srcdir)/build-aux/compile \
 	$(top_srcdir)/build-aux/config.guess \
 	$(top_srcdir)/build-aux/config.sub \
 	$(top_srcdir)/build-aux/install-sh \

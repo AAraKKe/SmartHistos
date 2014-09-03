@@ -16,7 +16,7 @@ SmartHistos::SmartHistos(){
  */
 SmartHistos::~SmartHistos(){
 
-    tr1::unordered_map<string,TH1*>::iterator it = m_histos.begin();
+    unordered_map<string,TH1*>::iterator it = m_histos.begin();
     for(; it != m_histos.end(); it++){
         delete (*it).second;
     }
@@ -41,7 +41,7 @@ void SmartHistos::Fill(double value, double weight, string name, string title) {
 
     // Check if the histogram exists. If it does add the value to it, if it 
     // doesn't create a new one with that name.
-    tr1::unordered_map<string, vector<double> >::iterator it = m_values.find(name);
+    unordered_map<string, vector<double> >::iterator it = m_values.find(name);
     if (it != m_values.end()) {
         m_values[name].push_back(value);
         m_weights[name].push_back(weight);
@@ -75,7 +75,7 @@ void SmartHistos::Fill(double value, double weight, string name, string title) {
 void SmartHistos::Fill(double value, double weight, int bins, double xlow, double xup, string name, string title){
 
     // Find the histogram and create it if doesn't exist
-    tr1::unordered_map<string,TH1*>::iterator it = m_histos.find(name);
+    unordered_map<string,TH1*>::iterator it = m_histos.find(name);
     if (it != m_histos.end()){
         m_histos[name]->Fill(value, weight);
     } else {
@@ -101,7 +101,7 @@ void SmartHistos::Fill(double value, double weight, int bins, double xlow, doubl
 void SmartHistos::SetBinContent(int bin, double value, int bins, double xlow, double xup, string name, string title){
 
     // Find the histogram and create it if doesn't exist
-    tr1::unordered_map<string,TH1*>::iterator it = m_histos.find(name);
+    unordered_map<string,TH1*>::iterator it = m_histos.find(name);
     if (it != m_histos.end()){
         m_histos[name]->SetBinContent(bin, value);
     } else {
@@ -128,7 +128,7 @@ void SmartHistos::SetBinContent(int bin, double value, int bins, double xlow, do
 void SmartHistos::SetBinError(int bin, double error, int bins, double xlow, double xup, string name, string title){
 
     // Find the histogram and create it if doesn't exist
-    tr1::unordered_map<string,TH1*>::iterator it = m_histos.find(name);
+    unordered_map<string,TH1*>::iterator it = m_histos.find(name);
     if (it != m_histos.end()){
         m_histos[name]->SetBinError(bin, error);
     } else {
@@ -159,7 +159,7 @@ void SmartHistos::SetBinError(int bin, double error, int bins, double xlow, doub
 void SmartHistos::Fill2D(double valuex, double valuey, double weight, int binsx, double xlow, double xup, int binsy, double ylow, double yup, string name, string title){
 
     // Find the histogram and create it if doesn't exist
-    tr1::unordered_map<string,TH2*>::iterator it = m_histos2D.find(name);
+    unordered_map<string,TH2*>::iterator it = m_histos2D.find(name);
     if (it != m_histos2D.end()){
         m_histos2D[name]->Fill(valuex, valuey, weight);
     } else {
@@ -183,10 +183,10 @@ void SmartHistos::Write(TFile *tf){
     // Create a string with names to sort in alphabetical order.
     // This will make the printout easier.
     vector<string> names2d, names1d;
-    for (tr1::unordered_map<string,TH2*>::iterator it = m_histos2D.begin(); it != m_histos2D.end(); it++){
+    for (unordered_map<string,TH2*>::iterator it = m_histos2D.begin(); it != m_histos2D.end(); it++){
         names2d.push_back((*it).first);
     }
-    for (tr1::unordered_map<string,TH1*>::iterator it = m_histos.begin(); it != m_histos.end(); it++) {
+    for (unordered_map<string,TH1*>::iterator it = m_histos.begin(); it != m_histos.end(); it++) {
         names1d.push_back((*it).first);
     }
 

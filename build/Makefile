@@ -82,8 +82,9 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
 	$(srcdir)/Config.h.in ChangeLog build-aux/ar-lib \
 	build-aux/compile build-aux/config.guess build-aux/config.sub \
-	build-aux/install-sh build-aux/missing build-aux/ltmain.sh \
-	$(top_srcdir)/build-aux/ar-lib $(top_srcdir)/build-aux/compile \
+	build-aux/depcomp build-aux/install-sh build-aux/missing \
+	build-aux/ltmain.sh $(top_srcdir)/build-aux/ar-lib \
+	$(top_srcdir)/build-aux/compile \
 	$(top_srcdir)/build-aux/config.guess \
 	$(top_srcdir)/build-aux/config.sub \
 	$(top_srcdir)/build-aux/install-sh \
@@ -201,13 +202,13 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /Users/juanpe/investigacion/SmartHistos/build-aux/missing aclocal-1.14
+ACLOCAL = ${SHELL} /Users/juanpe/investigacion/SM1/build-aux/missing aclocal-1.14
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = ar
-AUTOCONF = ${SHELL} /Users/juanpe/investigacion/SmartHistos/build-aux/missing autoconf
-AUTOHEADER = ${SHELL} /Users/juanpe/investigacion/SmartHistos/build-aux/missing autoheader
-AUTOMAKE = ${SHELL} /Users/juanpe/investigacion/SmartHistos/build-aux/missing automake-1.14
+AUTOCONF = ${SHELL} /Users/juanpe/investigacion/SM1/build-aux/missing autoconf
+AUTOHEADER = ${SHELL} /Users/juanpe/investigacion/SM1/build-aux/missing autoheader
+AUTOMAKE = ${SHELL} /Users/juanpe/investigacion/SM1/build-aux/missing automake-1.14
 AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -244,7 +245,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = lipo
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /Users/juanpe/investigacion/SmartHistos/build-aux/missing makeinfo
+MAKEINFO = ${SHELL} /Users/juanpe/investigacion/SM1/build-aux/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = ../build-aux/install-sh -c -d
 NM = /opt/local/bin/nm
@@ -267,10 +268,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 1.0
-abs_builddir = /Users/juanpe/investigacion/SmartHistos/build
-abs_srcdir = /Users/juanpe/investigacion/SmartHistos/build/..
-abs_top_builddir = /Users/juanpe/investigacion/SmartHistos/build
-abs_top_srcdir = /Users/juanpe/investigacion/SmartHistos/build/..
+abs_builddir = /Users/juanpe/investigacion/SM1/build
+abs_srcdir = /Users/juanpe/investigacion/SM1/build/..
+abs_top_builddir = /Users/juanpe/investigacion/SM1/build
+abs_top_srcdir = /Users/juanpe/investigacion/SM1/build/..
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
@@ -300,7 +301,7 @@ host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /Users/juanpe/investigacion/SmartHistos/build-aux/install-sh
+install_sh = ${SHELL} /Users/juanpe/investigacion/SM1/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -309,7 +310,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /Users/juanpe/investigacion/SmartHistos/build/..
+prefix = /Users/juanpe/investigacion/SM1/build/..
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin

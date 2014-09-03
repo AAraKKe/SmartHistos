@@ -1,6 +1,9 @@
 /* Config.h.  Generated from Config.h.in by configure.  */
 /* Config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* "Have C++0x" */
+/* #undef HAVE_CXX0X */
+
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
 
@@ -27,6 +30,9 @@
 
 /* Define to 1 if you have the <sys/types.h> header file. */
 #define HAVE_SYS_TYPES_H 1
+
+/* "Have tr1" */
+/* #undef HAVE_TR1 */
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
