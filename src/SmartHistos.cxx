@@ -16,7 +16,7 @@ SmartHistos::SmartHistos(){
  */
 SmartHistos::~SmartHistos(){
 
-    unordered_map<string,TH1*>::iterator it = m_histos.begin();
+    map_1d::iterator it = m_histos.begin();
     for(; it != m_histos.end(); it++){
         delete (*it).second;
     }
@@ -37,11 +37,11 @@ SmartHistos::~SmartHistos(){
   @param name The name of the histogram
   @param title The title of the histogram. In the case that a title is not specified or the function is called with only three arguments the title will be the same as the name.
   */
-void SmartHistos::Fill(double value, double weight, string name, string title) {
+void SmartHistos::fill(double value, double weight, string name, string title) {
 
     // Check if the histogram exists. If it does add the value to it, if it 
     // doesn't create a new one with that name.
-    unordered_map<string, vector<double> >::iterator it = m_values.find(name);
+    map_val::iterator it = m_values.find(name);
     if (it != m_values.end()) {
         m_values[name].push_back(value);
         m_weights[name].push_back(weight);
@@ -72,10 +72,10 @@ void SmartHistos::Fill(double value, double weight, string name, string title) {
   @param name The name of the histogram
   @param title The title of the histogram. In the case that a title is not specified or the function is called with only three arguments the title will be the same as the name.
   */
-void SmartHistos::Fill(double value, double weight, int bins, double xlow, double xup, string name, string title){
+void SmartHistos::fill(double value, double weight, int bins, double xlow, double xup, string name, string title){
 
     // Find the histogram and create it if doesn't exist
-    unordered_map<string,TH1*>::iterator it = m_histos.find(name);
+    map_1d::iterator it = m_histos.find(name);
     if (it != m_histos.end()){
         m_histos[name]->Fill(value, weight);
     } else {
@@ -98,10 +98,10 @@ void SmartHistos::Fill(double value, double weight, int bins, double xlow, doubl
  * @param name The name of the histogram for its first declaration
  * @param title Title of the histogram. If the name is not supplied 
  */
-void SmartHistos::SetBinContent(int bin, double value, int bins, double xlow, double xup, string name, string title){
+void SmartHistos::setBinContent(int bin, double value, int bins, double xlow, double xup, string name, string title){
 
     // Find the histogram and create it if doesn't exist
-    unordered_map<string,TH1*>::iterator it = m_histos.find(name);
+    map_1d::iterator it = m_histos.find(name);
     if (it != m_histos.end()){
         m_histos[name]->SetBinContent(bin, value);
     } else {
@@ -125,10 +125,10 @@ void SmartHistos::SetBinContent(int bin, double value, int bins, double xlow, do
  * @param name The name of the histogram for its first declaration
  * @param title Title of the histogram. If the name is not supplied 
  */
-void SmartHistos::SetBinError(int bin, double error, int bins, double xlow, double xup, string name, string title){
+void SmartHistos::setBinError(int bin, double error, int bins, double xlow, double xup, string name, string title){
 
     // Find the histogram and create it if doesn't exist
-    unordered_map<string,TH1*>::iterator it = m_histos.find(name);
+    map_1d::iterator it = m_histos.find(name);
     if (it != m_histos.end()){
         m_histos[name]->SetBinError(bin, error);
     } else {
@@ -156,10 +156,10 @@ void SmartHistos::SetBinError(int bin, double error, int bins, double xlow, doub
   @param name The name of the histogram
   @param title The title of the histogram. In the case that a title is not specified or the function is called with only three arguments the title will be the same as the name.
   */
-void SmartHistos::Fill2D(double valuex, double valuey, double weight, int binsx, double xlow, double xup, int binsy, double ylow, double yup, string name, string title){
+void SmartHistos::fill2D(double valuex, double valuey, double weight, int binsx, double xlow, double xup, int binsy, double ylow, double yup, string name, string title){
 
     // Find the histogram and create it if doesn't exist
-    unordered_map<string,TH2*>::iterator it = m_histos2D.find(name);
+    map_2d::iterator it = m_histos2D.find(name);
     if (it != m_histos2D.end()){
         m_histos2D[name]->Fill(valuex, valuey, weight);
     } else {
@@ -176,17 +176,17 @@ void SmartHistos::Fill2D(double valuex, double valuey, double weight, int binsx,
  *
  * @param tf Is a pointer to the TFile where the histograms will be written.
  */
-void SmartHistos::Write(TFile *tf){
+void SmartHistos::write(TFile *tf){
 
     tf->cd();
 
     // Create a string with names to sort in alphabetical order.
     // This will make the printout easier.
     vector<string> names2d, names1d;
-    for (unordered_map<string,TH2*>::iterator it = m_histos2D.begin(); it != m_histos2D.end(); it++){
+    for (map_2d::iterator it = m_histos2D.begin(); it != m_histos2D.end(); it++){
         names2d.push_back((*it).first);
     }
-    for (unordered_map<string,TH1*>::iterator it = m_histos.begin(); it != m_histos.end(); it++) {
+    for (map_1d::iterator it = m_histos.begin(); it != m_histos.end(); it++) {
         names1d.push_back((*it).first);
     }
 
@@ -225,4 +225,18 @@ void SmartHistos::Write(TFile *tf){
     for (unsigned int i = 0; i < names2d.size(); i++){
         m_histos[names2d[i]]->Write();
     }
+}
+
+/**
+ * @brief Get a given histogram tored in the container
+ * @param name Name of the histogram to be retrieved
+ */
+TH1* SmartHistos::getHisto(string name){
+    map_1d::iterator it = m_histos.find(name);
+    map_2d::iterator it2 = m_histos2D.find(name);
+    if(it != m_histos.end())
+        return it->second;
+    else if (it2 != m_histos2D.end())
+        return it->second;
+    else return NULL; 
 }

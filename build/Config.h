@@ -2,7 +2,7 @@
 /* Config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* "Have C++0x" */
-/* #undef HAVE_CXX0X */
+#define HAVE_CXX0X /**/
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1

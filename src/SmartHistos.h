@@ -44,13 +44,13 @@ class SmartHistos {
         map_2d m_histos2D; //!< Map of histograms fot TH2
 
         // Functions
-        void Fill(double value, double weight, std::string name, std::string title);
-        void Fill(double value, double weight, int nbins, double xmin, double xmax, std::string name, std::string title="");
-        void Fill2D(double valuex, double valuey, double weight, int nbinsx, double xmin, double xmax, int nbinsy, double ymin, double ymax, std::string name, std::string title="");
-        void SetBinContent(int bin, double value, int nbins, double xmin, double xmax, std::string name, std::string title="");
-        void SetBinError(int bin, double error, int nbins, double xmin, double xmax, std::string name, std::string title="");
-        TH1F* GetHisto(std::string); // TODO: Write it
-        void Write(TFile*);
+        void fill(double value, double weight, std::string name, std::string title);
+        void fill(double value, double weight, int nbins, double xmin, double xmax, std::string name, std::string title="");
+        void fill2D(double valuex, double valuey, double weight, int nbinsx, double xmin, double xmax, int nbinsy, double ymin, double ymax, std::string name, std::string title="");
+        void setBinContent(int bin, double value, int nbins, double xmin, double xmax, std::string name, std::string title="");
+        void setBinError(int bin, double error, int nbins, double xmin, double xmax, std::string name, std::string title="");
+        TH1* getHisto(std::string); // TODO: Write it
+        void write(TFile*);
 
     private:
 
