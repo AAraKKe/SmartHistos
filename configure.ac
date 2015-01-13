@@ -19,7 +19,6 @@ AC_CHECK_HEADER(unordered_map,[AC_DEFINE([HAVE_CXX0X],[],["Have C++0x"])],[])
 #Cofigure files
 AC_CONFIG_FILES([
                  Makefile
-                 src/Makefile
-                 example/Makefile])
+                 src/Makefile])
 AC_OUTPUT
 
